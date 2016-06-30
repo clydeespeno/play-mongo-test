@@ -8,7 +8,7 @@ val scalaOptions = Seq(
 val publishRepo = sys.props.get("repo").map(repo => "repo" at repo).getOrElse(Resolver.mavenLocal)
 
 val commonSettings = scalaOptions ++ Seq(
-  version := "0.0.1",
+  version := "0.1.0",
   organization := "jce.tools",
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "2.2.4",
@@ -50,6 +50,7 @@ lazy val reactiveMongoTest = (project in file("./reactivemongo-test")).settings(
   )
 
 lazy val playTest = (project in file("./play-test")).settings(commonSettings: _*)
+  .dependsOn(akkaTest)
   .settings(
     name := "play-test",
     libraryDependencies ++= Seq(

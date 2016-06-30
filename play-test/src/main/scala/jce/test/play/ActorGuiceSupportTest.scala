@@ -1,9 +1,11 @@
-package jce.test.akka
+package jce.test.play
 
 import akka.actor._
 import com.google.inject._
 import com.google.inject.name.Names
+import jce.test.akka.OneActorSystemPerTest
 import org.scalatest.Suite
+import play.api.inject.guice.GuiceInjector
 
 trait ActorGuiceSupportTest extends OneActorSystemPerTest { this: Suite =>
 
@@ -11,9 +13,7 @@ trait ActorGuiceSupportTest extends OneActorSystemPerTest { this: Suite =>
 
   def modules: Seq[Module] = Seq[Module]()
 
-  def getActorRef(name: String): ActorRef = {
-    actorSystem.actorOf(Props(classOf[ActorFetcher], injector, Key.get(classOf[Actor], Names.named(name))))
-  }
+  def getNamedActor(name: String) = injector.getInstance(Key.get(classOf[ActorRef], Names.named(name)))
 
   abstract override protected def beforeAll(): Unit = {
     super.beforeAll()
@@ -26,11 +26,9 @@ trait ActorGuiceSupportTest extends OneActorSystemPerTest { this: Suite =>
   private def createInjector(): Injector = Guice.createInjector(modules :+ actorModule: _*)
 
   private def actorModule = new AbstractModule {
-    override def configure(): Unit = bind(classOf[ActorSystem]).toInstance(actorSystem)
+    override def configure(): Unit = {
+      bind(classOf[ActorSystem]).toInstance(actorSystem)
+      bind(classOf[play.api.inject.Injector]).to(classOf[GuiceInjector])
+    }
   }
-}
-
-class ActorFetcher(injector: Injector, key: Key[Actor]) extends IndirectActorProducer {
-  override def actorClass: Class[_ <: Actor] = classOf[Actor]
-  override def produce(): Actor = injector.getInstance(key)
 }

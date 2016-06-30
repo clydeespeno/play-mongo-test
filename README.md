@@ -20,6 +20,14 @@ Sample Usage
 You may check the [example play application](https://github.com/clydeespeno/play-mongo-test/tree/master/play-test-app) on how 
 to use reactivemongo. More examples will be added later on. You can skip to the [example tests](https://github.com/clydeespeno/play-mongo-test/tree/master/play-test-app/test) to see some test examples,
 
+The sample application tests may be run with the ff:
+
+    > sbt
+    > project playTestApp
+    > test
+
+Each of the project with the exception of the test application could be imported separately in your project. 
+
 Building
 ===========
 There are no public repositories that hosts the binary for the test utilities. You may build the artifacts and publish locally 

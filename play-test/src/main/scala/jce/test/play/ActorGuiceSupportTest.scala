@@ -27,7 +27,7 @@ trait ActorGuiceSupportTest extends OneActorSystemPerTest { this: Suite =>
 
   private def actorModule = new AbstractModule {
     override def configure(): Unit = {
-      bind(classOf[ActorSystem]).toInstance(actorSystem)
+      bind(classOf[ActorSystem]).toInstance(system)
       bind(classOf[play.api.inject.Injector]).to(classOf[GuiceInjector])
     }
   }

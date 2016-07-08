@@ -8,7 +8,7 @@ val scalaOptions = Seq(
 val publishRepo = sys.props.get("repo").map(repo => "repo" at repo).getOrElse(Resolver.mavenLocal)
 
 val commonSettings = scalaOptions ++ Seq(
-  version := "0.2.4",
+  version := "0.2.5",
   organization := "jce.tools",
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "2.2.4",
@@ -55,7 +55,8 @@ lazy val playTest = (project in file("./play-test")).settings(commonSettings: _*
     name := "play-test",
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play" % playVersion,
-      "com.typesafe.play" %% "play-test" % playVersion
+      "com.typesafe.play" %% "play-test" % playVersion,
+      "org.mockito" % "mockito-core" % "1.10.19"
     )
   )
 

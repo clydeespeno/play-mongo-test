@@ -46,6 +46,8 @@ class MockVerification[T](mock: T) {
   def timeout(n: Long): T = verify(mock, Mockito.timeout(n))
 
   def after(n: Int): T = verify(mock, Mockito.after(n))
+
+  def never(): T = verify(mock, Mockito.never())
 }
 
 object MockSugar extends MockitoSugar

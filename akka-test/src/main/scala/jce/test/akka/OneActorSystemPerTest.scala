@@ -25,9 +25,9 @@ trait OneActorSystemPerTest extends BeforeAndAfterAll with StrictLogging { this:
 
   final implicit val system = createActorSystem()
 
-  def actorOf[T <: Actor : ClassTag](args: Any*): ActorRef = createActorRef[T](args)()
+  def actorOf[T <: Actor : ClassTag](args: Any*): ActorRef = createActorRef[T](args: _*)()
 
-  def actorOf[T <: Actor : ClassTag](name: String, args: Any*) = createActorRef[T](args)(name)
+  def actorOf[T <: Actor : ClassTag](name: String, args: Any*) = createActorRef[T](args: _*)(name)
 
   private def createActorRef[T <: Actor : ClassTag](args: Any*)(name: String = ""): ActorRef = {
     val props = Props(implicitly[ClassTag[T]].runtimeClass, args: _*)

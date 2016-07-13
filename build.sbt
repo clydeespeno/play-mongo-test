@@ -8,7 +8,7 @@ val scalaOptions = Seq(
 val publishRepo = sys.props.get("repo").map(repo => "repo" at repo).getOrElse(Resolver.mavenLocal)
 
 val commonSettings = scalaOptions ++ Seq(
-  version := "0.3",
+  version := "0.3.1",
   organization := "jce.tools",
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "2.2.4",

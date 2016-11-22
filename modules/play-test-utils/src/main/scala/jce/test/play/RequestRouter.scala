@@ -40,4 +40,7 @@ trait RequestRouter extends OneAppPerSuite with StrictLogging { this: Suite =>
   def awaitResult[T](f: Future[T]): T =
     Await.result(f, Long.MaxValue.nanos)
 
+  implicit class ResultHelper(result: Result) {
+    def to[T : Reads] = toType[T](result)
+  }
 }

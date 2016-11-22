@@ -20,3 +20,4 @@ start.sh
 a-start.sh
 *test.sc
 clean.sh
+project/plugins.credentials.sbt

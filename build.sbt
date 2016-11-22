@@ -1,5 +1,5 @@
 import Common._
-import DependencyVersion._
+import Versions._
 
 lazy val playTestApp = (project in file("./examples/play-test-app")).settings(scalaOptions: _*)
   .settings(publishArtifact := false)
@@ -14,7 +14,7 @@ lazy val playTestApp = (project in file("./examples/play-test-app")).settings(sc
   .enablePlugins(PlayScala)
 
 lazy val root = (project in file(".")).settings(commonSettings: _*)
-  .settings(name := "play-mongo-test")
+  .settings(name := "play-test")
   .dependsOn(reactiveMongoTest, playTestUtils, akkaTest)
   .aggregate(reactiveMongoTest, playTestUtils, mongoTest, akkaTest)
 

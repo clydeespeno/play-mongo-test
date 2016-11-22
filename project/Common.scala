@@ -1,6 +1,6 @@
 import sbt.Keys._
 import sbt._
-import DependencyVersion.appVersion
+import Versions.appVersion
 
 object Common {
 

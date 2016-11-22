@@ -23,7 +23,7 @@ val commonSettings = scalaOptions ++ Seq(
   publishTo := Some(publishRepo)
 )
 
-lazy val playTestApp = (project in file("./play-test-app")).settings(scalaOptions: _*)
+lazy val playTestApp = (project in file("./examples/play-test-app")).settings(scalaOptions: _*)
   .settings(publishArtifact := false)
   .settings(
     name := "play-test-app-example",

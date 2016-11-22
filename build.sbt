@@ -1,4 +1,5 @@
 val playVersion = "2.5.9"
+val reactiveMongoVersion = "0.12.0"
 
 val scalaOptions = Seq(
   scalaVersion := "2.11.8",
@@ -8,7 +9,7 @@ val scalaOptions = Seq(
 val publishRepo = sys.props.get("repo").map(repo => "repo" at repo).getOrElse(Resolver.mavenLocal)
 
 val commonSettings = scalaOptions ++ Seq(
-  version := "0.4.0",
+  version := "0.4.1",
   organization := "jce.tools",
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "2.2.4",
@@ -28,7 +29,7 @@ lazy val playTestApp = (project in file("./examples/play-test-app")).settings(sc
   .settings(
     name := "play-test-app-example",
     libraryDependencies ++= Seq(
-      "org.reactivemongo" %% "play2-reactivemongo" % "0.11.13"
+      "org.reactivemongo" %% "play2-reactivemongo" % reactiveMongoVersion
     ),
     routesGenerator := InjectedRoutesGenerator
   )
@@ -44,8 +45,9 @@ lazy val reactiveMongoTest = (project in file("./modules/reactivemongo-test")).s
   .dependsOn(mongoTest, playTestUtils)
   .settings(
     name := "reactivemongo-test",
+    version := reactiveMongoVersion,
     libraryDependencies ++= Seq(
-      "org.reactivemongo" %% "play2-reactivemongo" % "0.12.0"
+      "org.reactivemongo" %% "play2-reactivemongo" % reactiveMongoVersion
     )
   )
 

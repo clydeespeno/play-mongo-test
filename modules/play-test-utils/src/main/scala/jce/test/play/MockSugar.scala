@@ -20,7 +20,7 @@ trait MockSugar extends MockitoSugar {
 
   def argOf[A](index: Int)(implicit args: Array[AnyRef]): A = args(index).asInstanceOf[A]
 
-  def doReturn(any: Any) = Mockito.doReturn(any)
+  def doReturn(any: Any) = Mockito.doReturn(any, Array())
 
   def reset[T](t: T*) = Mockito.reset(t: _*)
 

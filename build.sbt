@@ -45,7 +45,7 @@ lazy val reactiveMongoTest = (project in file("./modules/reactivemongo-test")).s
   .settings(
     name := "reactivemongo-test",
     libraryDependencies ++= Seq(
-      "org.reactivemongo" %% "play2-reactivemongo" % "0.11.13"
+      "org.reactivemongo" %% "play2-reactivemongo" % "0.12.0"
     )
   )
 
@@ -56,7 +56,7 @@ lazy val playTestUtils = (project in file("./modules/play-test-utils")).settings
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play" % playVersion,
       "com.typesafe.play" %% "play-test" % playVersion,
-      "org.mockito" % "mockito-core" % "1.10.19"
+      "org.mockito" % "mockito-core" % "2.2.21"
     )
   )
 
@@ -72,7 +72,7 @@ lazy val akkaTest = (project in file("./modules/akka-test")).settings(commonSett
   .settings(
     name := "akka-test",
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor" % "2.4.4" % Compile,
+      "com.typesafe.akka" %% "akka-actor" % "2.4.10" % Compile,
       "com.google.inject" % "guice" % "4.0" % Compile
     )
   )

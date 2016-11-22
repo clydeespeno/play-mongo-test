@@ -1,4 +1,4 @@
-val playVersion = "2.5.3"
+val playVersion = "2.5.9"
 
 val scalaOptions = Seq(
   scalaVersion := "2.11.8",

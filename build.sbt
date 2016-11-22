@@ -23,7 +23,7 @@ val commonSettings = scalaOptions ++ Seq(
   publishTo := Some(publishRepo)
 )
 
-lazy val playTestApp = (project in file("./play-test-app")).settings(scalaOptions: _*)
+lazy val playTestApp = (project in file("./examples/play-test-app")).settings(scalaOptions: _*)
   .settings(publishArtifact := false)
   .settings(
     name := "play-test-app-example",
@@ -37,11 +37,11 @@ lazy val playTestApp = (project in file("./play-test-app")).settings(scalaOption
 
 lazy val root = (project in file(".")).settings(commonSettings: _*)
   .settings(name := "play-mongo-test")
-  .dependsOn(reactiveMongoTest, playTest, akkaTest)
-  .aggregate(reactiveMongoTest, playTest, mongoTest, akkaTest)
+  .dependsOn(reactiveMongoTest, playTestUtils, akkaTest)
+  .aggregate(reactiveMongoTest, playTestUtils, mongoTest, akkaTest)
 
-lazy val reactiveMongoTest = (project in file("./reactivemongo-test")).settings(commonSettings: _*)
-  .dependsOn(mongoTest, playTest)
+lazy val reactiveMongoTest = (project in file("./modules/reactivemongo-test")).settings(commonSettings: _*)
+  .dependsOn(mongoTest, playTestUtils)
   .settings(
     name := "reactivemongo-test",
     libraryDependencies ++= Seq(
@@ -49,10 +49,10 @@ lazy val reactiveMongoTest = (project in file("./reactivemongo-test")).settings(
     )
   )
 
-lazy val playTest = (project in file("./play-test")).settings(commonSettings: _*)
+lazy val playTestUtils = (project in file("./modules/play-test-utils")).settings(commonSettings: _*)
   .dependsOn(akkaTest)
   .settings(
-    name := "play-test",
+    name := "play-test-utils",
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play" % playVersion,
       "com.typesafe.play" %% "play-test" % playVersion,
@@ -60,7 +60,7 @@ lazy val playTest = (project in file("./play-test")).settings(commonSettings: _*
     )
   )
 
-lazy val mongoTest = (project in file("./mongo-test")).settings(commonSettings: _*)
+lazy val mongoTest = (project in file("./modules/mongo-test")).settings(commonSettings: _*)
   .settings(
     name := "mongo-test",
     libraryDependencies ++= Seq(
@@ -68,7 +68,7 @@ lazy val mongoTest = (project in file("./mongo-test")).settings(commonSettings: 
     )
   )
 
-lazy val akkaTest = (project in file("./akka-test")).settings(commonSettings: _*)
+lazy val akkaTest = (project in file("./modules/akka-test")).settings(commonSettings: _*)
   .settings(
     name := "akka-test",
     libraryDependencies ++= Seq(

@@ -17,10 +17,10 @@ trait RequestRouter extends OneAppPerSuite with StrictLogging { this: Suite =>
   def get(path: String, h: Seq[(String, String)] = Seq.empty): Result =
     awaitResult(async.get(path, h))
 
-  def post(path: String, body: Option[String] = None, h: Seq[(String, String)]): Result =
+  def post(path: String, body: Option[String] = None, h: Seq[(String, String)] = Seq.empty): Result =
     awaitResult(async.post(path, body, h))
 
-  def postJson[B : Writes](path: String, body: B, h: Seq[(String, String)]): Result =
+  def postJson[B : Writes](path: String, body: B, h: Seq[(String, String)] = Seq.empty): Result =
     awaitResult(async.postJson(path, body, h))
 
   def put(path: String, body: Option[String] = None, h: Seq[(String, String)] = Seq.empty): Result =

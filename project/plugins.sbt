@@ -1,1 +1,3 @@
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.9")
+import Versions.playVersion
+
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % playVersion)

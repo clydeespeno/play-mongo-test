@@ -6,8 +6,10 @@ import com.typesafe.scalalogging.StrictLogging
 import org.scalatest.{BeforeAndAfterAll, Suite, SuiteMixin}
 import play.api.inject.guice.{GuiceApplicationBuilder, GuiceableModule}
 import play.api.{Application, Environment, Mode}
+
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
+import scala.reflect.ClassTag
 
 
 trait OneAppPerSuite extends SuiteMixin with BeforeAndAfterAll with StrictLogging {
@@ -44,6 +46,8 @@ trait OneAppPerSuite extends SuiteMixin with BeforeAndAfterAll with StrictLoggin
   def overrides: Seq[GuiceableModule] = Seq.empty
 
   def disables: Seq[Class[_]] = Seq.empty
+
+  def fetchInstance[T : ClassTag] = app.injector.instanceOf[T]
 
   final implicit def app: Application = synchronized(appPerTest)
 }

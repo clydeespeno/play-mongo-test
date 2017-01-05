@@ -73,5 +73,7 @@ trait RequestRouter extends OneAppPerSuite with StrictLogging { this: Suite =>
 
   implicit class ResultHelper(result: Result) {
     def to[T : Reads] = toType[T](result)
+
+    def to[T : Reads](path: String) = (json(result) \ path).as[T]
   }
 }

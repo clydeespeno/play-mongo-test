@@ -15,7 +15,7 @@ object Common {
     version := appVersion,
     organization := "jce.tools",
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "2.2.4",
+      "org.scalatest" %% "scalatest" % "3.0.1",
       "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0"
     ),
     resolvers ++= Seq(

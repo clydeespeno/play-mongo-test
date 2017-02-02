@@ -11,7 +11,7 @@ trait OneMongoPerSuite extends BeforeAndAfterAll with StrictLogging {
     * override to create a different configuration
     */
   def config = FakeMongoConfig(
-    port = 27017
+    port = 38148
   )
 
   /**
